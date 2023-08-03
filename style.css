@@ -6,12 +6,16 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: "REM", sans-serif;
-  margin: auto;
 }
 
 header {
   display: flex;
+  margin-top: 3rem;
 }
 
 header h1 {
@@ -30,17 +34,51 @@ button {
   position: relative;
   top: 1rem;
 }
-input {
+.item-input {
   border: none; /* Removes the default border */
   position: relative;
   top: 2.5rem;
   border-bottom: 2px solid gray;
-  height: 20%;
-  width: 30%;
+  height: 30px;
+  width: 300px;
   font-size: 1.5rem;
 }
 
 form {
   display: flex;
-  margin-left: 0.5rem;
+  margin-left: 5rem;
+}
+
+.filter-item {
+  border: none;
+  margin-top: 1rem;
+  margin-left: -5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-bottom: 4px dotted rgb(65, 65, 65);
+}
+
+.items-section {
+  position: relative;
+  right: 100px;
+  font-size: 1.2rem;
+}
+.item-list {
+  list-style-type: none;
+  margin-top: 1.5rem;
+  width: 200%;
+  text-align: center;
+}
+.items {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+}
+.action-btns {
+  cursor: pointer;
+}
+
+#filter {
+  display: none;
 }
