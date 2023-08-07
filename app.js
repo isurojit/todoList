@@ -5,8 +5,9 @@ const clr = document.querySelector(".clear-btn");
 const filter = document.querySelector(".filter-item");
 
 //Functions
-const addItem = (e) => {
+const onAdditemSubmit = (e) => {
   e.preventDefault();
+  const newItem = itemInput.value;
 
   //Validate Input
   if (itemInput.value === "") {
@@ -21,18 +22,28 @@ const addItem = (e) => {
       }, 1000);
     }
     return;
-  } else {
-    const newItem = itemInput.value;
+  }
 
-    const li = document.createElement("li");
-    const h3 = document.createElement("h3");
-    const div = document.createElement("div");
+  //Create item DOM ELe
+  addItemToDOM(newItem);
 
-    li.className = "items";
-    h3.className = "item-title";
-    div.className = "action-btns";
+  //Add item to local storage
+  additemToStorage(newItem);
 
-    const cross = `<lord-icon
+  checkUi();
+  itemInput.value = "";
+};
+
+const addItemToDOM = (item) => {
+  const li = document.createElement("li");
+  const h3 = document.createElement("h3");
+  const div = document.createElement("div");
+
+  li.className = "items";
+  h3.className = "item-title";
+  div.className = "action-btns";
+
+  const cross = `<lord-icon
     src="https://cdn.lordicon.com/nhfyhmlt.json"
     trigger="hover"
     colors="primary:#121331"
@@ -40,7 +51,7 @@ const addItem = (e) => {
     style="width:35px;height:35px"
   ></lord-icon>`;
 
-    const edit = `<lord-icon
+  const edit = `<lord-icon
   src="https://cdn.lordicon.com/wloilxuq.json"
   trigger="hover"
   colors="primary:#121331,secondary:#08a88a"
@@ -48,18 +59,14 @@ const addItem = (e) => {
   style="width:35px;height:35px"
 ></lord-icon>`;
 
-    const btnOne = createButton("remove-item", cross);
-    const btnTwo = createButton("edit-item", edit);
+  const btnOne = createButton("remove-item", cross);
+  const btnTwo = createButton("edit-item", edit);
 
-    h3.innerText = `${newItem}`;
+  h3.innerText = `${item}`;
 
-    div.append(btnOne, btnTwo);
-    li.append(h3, div);
-    itemList.appendChild(li);
-
-    checkUi();
-    itemInput.value = "";
-  }
+  div.append(btnOne, btnTwo);
+  li.append(h3, div);
+  itemList.appendChild(li);
 };
 
 const createButton = (classes, content) => {
@@ -69,6 +76,28 @@ const createButton = (classes, content) => {
   return btn;
 };
 
+//Add items to local storgae
+const additemToStorage = (item) => {
+  const itemsFromStorage = getItemfromStorage();
+  //Add new item to array
+  itemsFromStorage.push(item);
+
+  //Convert To JSON String and set to local storgae
+  localStorage.setItem("items", JSON.stringify(itemsFromStorage));
+};
+
+//get Items from local storage
+const getItemfromStorage = () => {
+  let itemsFromStorage;
+  if (localStorage.getItem("items") === null) {
+    itemsFromStorage = [];
+  } else {
+    itemsFromStorage = JSON.parse(localStorage.getItem("items"));
+  }
+  return itemsFromStorage;
+};
+
+//Removes perticular item
 const removeItem = (e) => {
   if (e.target.parentElement.classList.contains("remove-item")) {
     if (confirm("Are Your Sure")) {
@@ -111,7 +140,7 @@ const checkUi = () => {
 };
 
 //EventListners
-form.addEventListener("submit", addItem);
+form.addEventListener("submit", onAdditemSubmit);
 itemList.addEventListener("click", removeItem);
 clr.addEventListener("click", removeList);
 filter.addEventListener("input", filterList);
