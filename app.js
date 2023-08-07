@@ -1,6 +1,8 @@
-const form = document.querySelector(".form");
+const form = document.querySelector("#form");
 const itemInput = document.querySelector(".item-input");
 const itemList = document.querySelector(".item-list");
+const clr = document.querySelector(".clear-btn");
+const filter = document.querySelector(".filter-item");
 
 //Functions
 const addItem = (e) => {
@@ -13,11 +15,13 @@ const addItem = (e) => {
     alert.innerText = "Please give some task.";
     alert.style.color = "red";
     form.after(alert);
+    if (form.nextSibling) {
+      setTimeout(function () {
+        form.nextSibling.remove();
+      }, 1000);
+    }
     return;
   } else {
-    if (document.body.classList.contains("error-input")) {
-      document.querySelector(".error-input").remove();
-    }
     const newItem = itemInput.value;
 
     const li = document.createElement("li");
@@ -52,7 +56,9 @@ const addItem = (e) => {
     div.append(btnOne, btnTwo);
     li.append(h3, div);
     itemList.appendChild(li);
-    console.log(div);
+
+    checkUi();
+    itemInput.value = "";
   }
 };
 
@@ -63,5 +69,37 @@ const createButton = (classes, content) => {
   return btn;
 };
 
+const removeItem = (e) => {
+  if (e.target.parentElement.classList.contains("remove-item")) {
+    if (confirm("Are Your Sure")) {
+      e.target.parentElement.parentElement.parentElement.remove();
+    }
+  }
+  checkUi();
+};
+
+const removeList = (e) => {
+  while (itemList.firstChild) {
+    itemList.removeChild(itemList.firstChild);
+  }
+  checkUi();
+};
+
+const checkUi = () => {
+  const items = document.querySelectorAll(".items");
+  if (items.length === 0) {
+    clr.parentElement.style.display = "none";
+    filter.parentElement.style.display = "none";
+  } else {
+    clr.parentElement.style.display = "block";
+    filter.parentElement.style.display = "block";
+  }
+};
+
 //EventListners
 form.addEventListener("submit", addItem);
+itemList.addEventListener("click", removeItem);
+clr.addEventListener("click", removeList);
+
+//Function On load
+checkUi();

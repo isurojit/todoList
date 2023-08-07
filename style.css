@@ -16,6 +16,7 @@ body {
 header {
   display: flex;
   margin-top: 3rem;
+  margin-left: 15rem;
 }
 
 .header-img {
@@ -24,7 +25,7 @@ header {
 
 header h1 {
   font-size: 2.5rem;
-  margin-left: 1.5rem;
+  margin-left: 2rem;
   margin-top: 0.5rem;
 }
 button {
@@ -44,12 +45,14 @@ button {
   top: 2.5rem;
   border-bottom: 2px solid gray;
   height: 30px;
-  width: 300px;
+  width: 350px;
   font-size: 1.5rem;
+  margin-left: 10rem;
 }
 .error-input {
   position: relative;
-  left: 5rem;
+  left: 15rem;
+  font-size: 1.2rem;
 }
 form {
   display: flex;
@@ -59,26 +62,28 @@ form {
 .filter-item {
   border: none;
   margin-top: 1rem;
-  margin-left: 5rem;
+  margin-left: 15rem;
   padding: 0.5rem;
   font-size: 1rem;
   border-bottom: 4px dotted rgb(65, 65, 65);
-  width: 50%;
+  width: 40%;
 }
 
 .items-section {
   font-size: 1.2rem;
+  margin-left: 10rem;
 }
 .item-list {
   list-style-type: none;
   margin-top: 3rem;
-  width: 80%;
+  width: 70%;
 }
 .items {
   list-style-type: none;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid grey;
+  margin-top: 1rem;
 }
 .action-btns {
   cursor: pointer;
@@ -86,12 +91,10 @@ form {
   bottom: 1rem;
 }
 
-.clear {
-  position: relative;
-  left: 12rem;
-  top: 50px;
-}
 .clear-btn {
+  position: relative;
+  left: 45%;
+  margin-top: 5rem;
   box-shadow: 3px 4px 0px 0px #899599;
   background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
   background-color: #ededed;
@@ -114,4 +117,9 @@ form {
   position: relative;
   top: 0.5px;
   transition: all 500ms ease-in;
+}
+
+footer {
+  margin-top: 20rem;
+  text-align: center;
 }
