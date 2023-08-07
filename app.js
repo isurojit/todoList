@@ -3,6 +3,8 @@ const itemInput = document.querySelector(".item-input");
 const itemList = document.querySelector(".item-list");
 const clr = document.querySelector(".clear-btn");
 const filter = document.querySelector(".filter-item");
+const submitBtn = document.querySelector(".btn-submit");
+let isEditMode = false;
 
 //Functions
 
@@ -31,6 +33,16 @@ const onAdditemSubmit = (e) => {
       }, 1000);
     }
     return;
+  }
+
+  //check for edit mode
+  if (isEditMode) {
+    const itemToEdit = itemList.querySelector(".edit-mode");
+
+    removeItemFromStorage(itemToEdit.textContent);
+    itemToEdit.classList.remove("edit-mode");
+    itemToEdit.remove();
+    isEditMode = false;
   }
 
   //Create item DOM ELe
@@ -111,6 +123,22 @@ const onClickItem = (e) => {
   if (e.target.parentElement.classList.contains("remove-item")) {
     removeItem(e.target.parentElement.parentElement.parentElement);
   }
+  if (e.target.parentElement.classList.contains("edit-item")) {
+    setItemToEdit(e.target.parentElement.parentElement.parentElement);
+  }
+};
+
+//Edit
+const setItemToEdit = (item) => {
+  isEditMode = true;
+
+  itemList.querySelectorAll("li").forEach((i) => {
+    i.classList.remove("edit-mode");
+  });
+  item.classList.add("edit-mode");
+  submitBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>  Update Item';
+  submitBtn.style.backgroundColor = "green";
+  itemInput.value = item.textContent;
 };
 
 //Removes perticular item
@@ -167,6 +195,10 @@ const checkUi = () => {
     clr.parentElement.style.display = "block";
     filter.parentElement.style.display = "block";
   }
+
+  submitBtn.innerHTML = ' <i class="fas fa-plus"></i> Add Item';
+  submitBtn.style.backgroundColor = "rgb(25, 25, 25)";
+  isEditMode = false;
 };
 
 //initilaize app

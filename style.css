@@ -51,8 +51,10 @@ button {
 }
 .error-input {
   position: relative;
+  top: 40px;
   left: 15rem;
   font-size: 1.2rem;
+  width: 30%;
 }
 form {
   display: flex;
@@ -61,7 +63,7 @@ form {
 
 .filter-item {
   border: none;
-  margin-top: 1rem;
+  margin-top: 6rem;
   margin-left: 15rem;
   padding: 0.5rem;
   font-size: 1rem;
@@ -90,33 +92,34 @@ form {
   position: relative;
   bottom: 1rem;
 }
-
+button {
+  font-size: 1.2rem;
+}
+button:hover {
+  scale: 1.05;
+  transition: all 300ms ease-in-out;
+}
+button:active {
+  scale: 0.9;
+  transition: all 300ms ease-in-out;
+}
+.btn-submit {
+  position: relative;
+  top: 35px;
+  left: 10px;
+  background-color: rgb(25, 25, 25);
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.clear,
 .clear-btn {
-  position: relative;
-  left: 45%;
-  margin-top: 5rem;
-  box-shadow: 3px 4px 0px 0px #899599;
-  background: linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-  background-color: #ededed;
-  border-radius: 15px;
-  border: 1px solid #d6bcd6;
-  display: inline-block;
-  cursor: pointer;
-  color: #3a8a9e;
-  font-family: Arial;
-  font-size: 17px;
-  padding: 7px 25px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #e1e2ed;
+  text-align: center;
+  margin: auto;
 }
-.clear-btn:hover {
-  background: linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-  background-color: #bab1ba;
-}
-.clear-btn:active {
-  position: relative;
-  top: 0.5px;
-  transition: all 500ms ease-in;
+
+.edit-mode {
+  color: #ccc;
 }
 
 footer {
