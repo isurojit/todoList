@@ -43,6 +43,11 @@ const onAdditemSubmit = (e) => {
     itemToEdit.classList.remove("edit-mode");
     itemToEdit.remove();
     isEditMode = false;
+  } else {
+    if (checkIfItemExists(newItem)) {
+      alert("Opps! Item already exists!");
+      return;
+    }
   }
 
   //Create item DOM ELe
@@ -126,6 +131,12 @@ const onClickItem = (e) => {
   if (e.target.parentElement.classList.contains("edit-item")) {
     setItemToEdit(e.target.parentElement.parentElement.parentElement);
   }
+};
+
+//duplicate filter
+const checkIfItemExists = (item) => {
+  const itemsFromStorage = getItemfromStorage();
+  return itemsFromStorage.includes(item);
 };
 
 //Edit
