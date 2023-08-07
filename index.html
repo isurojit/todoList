@@ -7,47 +7,54 @@
     <title>Todo List</title>
   </head>
   <body>
-    <header>
-      <lord-icon
-        src="https://cdn.lordicon.com/svbmmyue.json"
-        trigger="loop"
-        delay="2000"
-        colors="primary:#121331"
-        style="width: 75px; height: 75px"
-      >
-      </lord-icon>
-      <h1>Todo List</h1>
-    </header>
-    <section class="form">
-      <form id="form">
+    <div class="container">
+
+      <header>
+       <img src="./images/category-thumb.gif" alt="header-img" class="header-img">
+        </lord-icon>
+        <h1>Todo List</h1>
+      </header>
+      
+      <section class="form">
+        <form id="form">
+          <input
+            type="text"
+            name="item"
+            class="item-input"
+            placeholder="Enter Your Todo"
+          />
+          <div class="btn">
+            <button class="btn-submit" type="submit">
+              <lord-icon
+                src="https://cdn.lordicon.com/scifwrvf.json"
+                trigger="click"
+                colors="outline:#121331,primary:#ebe6ef"
+                style="width: 75px; height: 75px"
+              >
+              </lord-icon>
+            </button>
+          </div>
+        </form>
+      </section>
+      <section id="filter">
         <input
           type="text"
           name="item"
-          class="item-input"
-          placeholder="Enter Your Todo"
+          class="filter-item"
+          placeholder="Filter Item"
         />
-        <div class="btn">
-          <button class="btn-submit" type="submit">
-            <lord-icon
-              src="https://cdn.lordicon.com/scifwrvf.json"
-              trigger="click"
-              colors="outline:#121331,primary:#ebe6ef"
-              style="width: 75px; height: 75px"
-            >
-            </lord-icon>
-          </button>
-        </div>
-      </form>
-    </section>
-    <section id="filter">
-      <input
-        type="text"
-        name="item"
-        class="filter-item"
-        placeholder="Filter Item"
-      />
-    </section>
+      </section>
+      <section class="items-section">
+        <ul class="item-list">
+          <li>
 
+          </li>
+        </ul>
+      </section>
+      <section class="clear">
+        <button class="clear-btn">Clear All</button>
+      </section>
+    </div>
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
     <script src="app.js"></script>
   </body>
