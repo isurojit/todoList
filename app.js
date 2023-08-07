@@ -5,6 +5,15 @@ const clr = document.querySelector(".clear-btn");
 const filter = document.querySelector(".filter-item");
 
 //Functions
+
+const displayItems = () => {
+  const itemsFromStorage = getItemfromStorage();
+  itemsFromStorage.forEach((item) => {
+    addItemToDOM(item);
+  });
+  checkUi();
+};
+
 const onAdditemSubmit = (e) => {
   e.preventDefault();
   const newItem = itemInput.value;
@@ -79,6 +88,7 @@ const createButton = (classes, content) => {
 //Add items to local storgae
 const additemToStorage = (item) => {
   const itemsFromStorage = getItemfromStorage();
+
   //Add new item to array
   itemsFromStorage.push(item);
 
@@ -86,7 +96,7 @@ const additemToStorage = (item) => {
   localStorage.setItem("items", JSON.stringify(itemsFromStorage));
 };
 
-//get Items from local storage
+//Get Items from local storage
 const getItemfromStorage = () => {
   let itemsFromStorage;
   if (localStorage.getItem("items") === null) {
@@ -97,20 +107,40 @@ const getItemfromStorage = () => {
   return itemsFromStorage;
 };
 
-//Removes perticular item
-const removeItem = (e) => {
+const onClickItem = (e) => {
   if (e.target.parentElement.classList.contains("remove-item")) {
-    if (confirm("Are Your Sure")) {
-      e.target.parentElement.parentElement.parentElement.remove();
-    }
+    removeItem(e.target.parentElement.parentElement.parentElement);
   }
-  checkUi();
+};
+
+//Removes perticular item
+const removeItem = (item) => {
+  if (confirm("Are Your Sure")) {
+    //Remove Item From DOM
+    item.remove();
+
+    //Remove Item From Storage
+    removeItemFromStorage(item.textContent);
+
+    checkUi();
+  }
+};
+
+const removeItemFromStorage = (item) => {
+  let itemsFromStorage = getItemfromStorage();
+  //Filter Out Items
+  itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
+
+  //reset to local storage
+  localStorage.setItem("items", JSON.stringify(itemsFromStorage));
 };
 
 const removeList = (e) => {
   while (itemList.firstChild) {
     itemList.removeChild(itemList.firstChild);
   }
+  //Clear from localstorage
+  localStorage.removeItem("items");
   checkUi();
 };
 
@@ -139,11 +169,17 @@ const checkUi = () => {
   }
 };
 
-//EventListners
-form.addEventListener("submit", onAdditemSubmit);
-itemList.addEventListener("click", removeItem);
-clr.addEventListener("click", removeList);
-filter.addEventListener("input", filterList);
+//initilaize app
+const init = () => {
+  //EventListners
+  form.addEventListener("submit", onAdditemSubmit);
+  itemList.addEventListener("click", onClickItem);
+  clr.addEventListener("click", removeList);
+  filter.addEventListener("input", filterList);
+  document.addEventListener("DOMContentLoaded", displayItems);
 
-//Function On load
-checkUi();
+  //Function On load
+  checkUi();
+};
+
+init();
