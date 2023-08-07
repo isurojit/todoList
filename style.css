@@ -47,7 +47,10 @@ button {
   width: 300px;
   font-size: 1.5rem;
 }
-
+.error-input {
+  position: relative;
+  left: 5rem;
+}
 form {
   display: flex;
   margin-left: 5rem;
@@ -56,22 +59,20 @@ form {
 .filter-item {
   border: none;
   margin-top: 1rem;
-  margin-left: -5rem;
+  margin-left: 5rem;
   padding: 0.5rem;
   font-size: 1rem;
   border-bottom: 4px dotted rgb(65, 65, 65);
+  width: 50%;
 }
 
 .items-section {
-  position: relative;
-  right: 100px;
   font-size: 1.2rem;
 }
 .item-list {
   list-style-type: none;
-  margin-top: 1.5rem;
-  width: 200%;
-  text-align: center;
+  margin-top: 3rem;
+  width: 80%;
 }
 .items {
   list-style-type: none;
@@ -81,14 +82,14 @@ form {
 }
 .action-btns {
   cursor: pointer;
-}
-
-#filter {
-  display: none;
+  position: relative;
+  bottom: 1rem;
 }
 
 .clear {
-  display: none;
+  position: relative;
+  left: 12rem;
+  top: 50px;
 }
 .clear-btn {
   box-shadow: 3px 4px 0px 0px #899599;
